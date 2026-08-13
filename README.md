@@ -1,2 +1,2 @@
 # robholdings.com
-Personal career website
+Personal website, career portfolio, and projects
