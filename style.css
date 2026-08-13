@@ -170,7 +170,101 @@ section:not(.hero) p {
   font-size: 1.05rem;
 }
 
+/* =========================
+   Expertise
+   ========================= */
 
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.expertise-item {
+  padding: 1.25rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.expertise-item h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.expertise-item p {
+  margin: 0;
+}
+
+
+/* =========================
+   Selected Work
+   ========================= */
+
+#work ul {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#work li {
+  position: relative;
+  margin-bottom: 0.85rem;
+  padding-left: 1.4rem;
+}
+
+#work li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  opacity: 0.55;
+}
+
+#work li:last-child {
+  margin-bottom: 0;
+}
+
+#work strong {
+  font-weight: 600;
+}
+
+
+/* =========================
+   Experience
+   ========================= */
+
+.experience-item {
+  margin-top: 1.75rem;
+}
+
+.experience-item:first-of-type {
+  margin-top: 0;
+}
+
+.experience-item h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.experience-item .role {
+  margin: 0 0 0.5rem;
+  opacity: 0.65;
+  font-size: 0.9rem;
+}
+
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 700px) {
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+}
 /* =========================
    Selection
 ========================= */
