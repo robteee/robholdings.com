@@ -51,6 +51,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
+   
 
   display: flex;
   justify-content: flex-end;
@@ -64,6 +65,10 @@ nav {
   backdrop-filter: blur(12px);
 
   border-bottom: 1px solid var(--border);
+}
+
+.site-home {
+  margin-right: auto;
 }
 
 nav a {
