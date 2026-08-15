@@ -97,6 +97,34 @@ section:last-child {
   border-bottom: 0;
 }
 
+/* =========================
+   Site Home / Brand
+   ========================= */
+
+.site-home {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.site-home-mark {
+  font-weight: 700;
+}
+
+.site-home-name {
+  opacity: 0.6;
+}
+
+.site-home:hover .site-home-name {
+  opacity: 1;
+}
 
 /* =========================
    Hero
