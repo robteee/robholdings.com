@@ -428,6 +428,15 @@ My background spans enterprise websites, hundreds of local business sites, platf
   ↑
 </button>
 
+ <script>
+  const footerEmail = document.getElementById("footer-email");
+  const emailUser = "rob";
+  const emailDomain = "robholdings.com";
+
+  footerEmail.textContent = emailUser + "@" + emailDomain;
+  footerEmail.href = "mailto:" + emailUser + "@" + emailDomain;
+</script>
+ 
 <script src="scrollbackup.js"></script>
 
 </body>
