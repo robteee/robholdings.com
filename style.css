@@ -432,25 +432,32 @@ footer {
   margin: 0 auto;
   padding: 2rem;
 
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
 
   color: var(--muted);
   font-size: 0.9rem;
 }
 
-.footer-inner a {
-  transition: color 0.2s ease;
+.footer-inner > :nth-child(2) {
+  text-align: center;
 }
 
-.footer-inner a:hover {
-  color: var(--accent);
+.footer-inner > :last-child {
+  text-align: right;
 }
 
 @media (max-width: 700px) {
   .footer-inner {
     padding: 1.5rem 1.25rem;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .footer-inner > :last-child {
+    text-align: center;
   }
 }
 
