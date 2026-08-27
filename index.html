@@ -139,7 +139,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="hero">
       <p>SEO • AI Search • Strategy • Technical</p>
       <h1>Rob Taylor</h1>
-      <h2>Senior Manager, Organic Search</h2>
+      <h2>Organic Search & SEO Strategy</h2>
       <p>SEO leader with 10+ years of experience across enterprise, multi-site, and local search. Currently focused on large-scale SEO and GEO strategy across U.S. and Canadian brand sites.</p>
     </section>
 
@@ -415,6 +415,8 @@ My background spans enterprise websites, hundreds of local business sites, platf
   <div class="footer-inner">
     <p>© 2026 Rob Taylor</p>
 
+   <a id="footer-email" href="#">Email</a>
+
     <a href="https://www.linkedin.com/in/robertmichaeltaylor/"
        target="_blank"
        rel="noopener noreferrer">
@@ -426,6 +428,15 @@ My background spans enterprise websites, hundreds of local business sites, platf
   ↑
 </button>
 
+ <script>
+  const footerEmail = document.getElementById("footer-email");
+  const emailUser = "rob";
+  const emailDomain = "robholdings.com";
+
+  footerEmail.textContent = emailUser + "@" + emailDomain;
+  footerEmail.href = "mailto:" + emailUser + "@" + emailDomain;
+</script>
+ 
 <script src="scrollbackup.js"></script>
 
 </body>
