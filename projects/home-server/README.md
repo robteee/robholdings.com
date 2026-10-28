@@ -1,84 +1,92 @@
-# Rob Holdings Home Server Lab
+# BobbyOs | Home Server
 
-A small self-hosting project built on my Windows desktop to experiment with networking, remote access, media hosting, game servers, DNS, and web infrastructure.
+BobbyOs is my Windows 11 desktop, used for gaming, self-hosting, remote access, and experimenting with networking and web infrastructure.
 
-## The Setup
+## Hardware
 
-The server currently runs:
+- **CPU:** Intel Core i9-12900K
+- **GPU:** NVIDIA RTX 5080
+- **Motherboard:** ASUS PRIME Z790-V WIFI
+- **RAM:** 32 GB DDR5-6000
+- **OS:** Windows 11
+- **PSU:** MSI 850W Gold
+- **Case:** Fractal Pop Air
+- **Network:** Ethernet, TP-Link Archer AXE95 router
+- **Displays:** LG C1 4K/120Hz OLED and ASUS 27" 1440p/165Hz monitor
 
-- **Minecraft Java Server** — local and remote multiplayer
-- **Jellyfin** — self-hosted media streaming
-- **Caddy** — reverse proxy and web-service routing
-- **Playit** — public tunneling through ISP CGNAT
-- **Tailscale** — private remote access
-- **PIA** — split tunneling for selected traffic
-- **qBittorrent** — VPN-isolated download traffic
-- **Custom DNS** — services connected to `robholdings.com` subdomains
+### Storage
 
-## Architecture
+| Drive | Type | Capacity | Usage |
+|---|---|---|---|
+| C: | NVMe SSD | 2 TB | Windows / primary applications |
+| D: | NVMe SSD | 2 TB | Games / secondary storage |
+| E: | SATA SSD | 2 TB | Movies |
+| F: | SATA SSD | 2 TB | Music / TV Shows |
+| **Total** | | **8 TB** | |
 
-```text
-                       INTERNET
-                          |
-          +---------------+---------------+
-          |                               |
-          v                               v
- robholdings.com DNS                 Tailscale
-          |                         Private Access
-          v                               |
-       Playit                             |
-          |                               |
-          +---------------+---------------+
-                          |
-                          v
-                  WINDOWS SERVER
-                          |
-        +-----------------+-----------------+
-        |                 |                 |
-        v                 v                 v
-    Minecraft          Jellyfin           Caddy
+All four drives are internal SSDs. Future expansion may include a 20 TB+ HDD for bulk storage and increased media hosting.
 
+## Services
 
-LOCAL NETWORK                         VPN TRAFFIC
+| Service | Purpose |
+|---|---|
+| Jellyfin | Self-hosted media streaming |
+| Caddy | Reverse proxy and web routing |
+| Playit | Public tunnels through ISP CGNAT |
+| Minecraft Java Server | Local and remote multiplayer |
+| Tailscale | Private remote network access |
+| Sunshine | Remote desktop and game-streaming host |
+| Moonlight | Streaming client on phones, tablets, and laptops |
+| Chrome Remote Desktop | Backup remote desktop access |
+| OpenSSH | Remote commands and administration |
+| PIA VPN | Split tunneling for selected traffic |
+| qBittorrent | Downloads routed through PIA |
 
-Local LAN Devices                     qBittorrent
-        |                                  |
-        v                                  v
-   Home Router                            PIA
-        |                                  |
-        +--------> Windows Server          v
-                                        Internet
-```
+## Networking & Access
 
-## Why the Tunnels?
+My ISP uses CGNAT, preventing conventional inbound IPv4 port forwarding.
 
-My ISP uses **CGNAT**, which prevents normal inbound IPv4 port forwarding from being enough for public hosting.
+Different services use different access methods:
+- Playit: Public Minecraft access at mc.robholdings.com
+- Tailscale: Private connectivity between BobbyOs and remote devices
+- Sunshine/Moonlight: Low-latency gaming and desktop streaming over LAN or private remote connections
+- Chrome Remote Desktop: Alternative remote desktop access
+- SSH: Remote system management, including HDR commands
+- PIA: VPN-isolated download traffic through split tunneling
+- Caddy: Reverse proxy for applicable self-hosted web services
 
-Instead of purchasing a dedicated public IP, I use different tools for different access needs:
+## Remote Streaming
+### The setup supports remote gaming with an Xbox controller, keyboard/mouse input, and portable displays.
 
-- **Playit** for public Minecraft access
-- **Tailscale** for private remote access
-- **Direct LAN connections** while at home
-- **PIA split tunneling** to isolate download traffic without routing server services through the VPN
+Sunshine runs on BobbyOs, with Moonlight clients on:
 
-Minecraft is currently accessible externally through `mc.robholdings.com`.
+- iPhone 17 Pro, including external-monitor output
+- Windows laptops
+- iPad 6th generation
 
-## Why Build It?
+A sideloaded Moonlight fork supports additional external-monitor resolutions on iPhone.
 
-I'm an SEO professional rather than a developer or systems administrator. This project started as a practical way to learn more about the infrastructure underneath the web: DNS, networking, proxies, tunnels, server processes, remote access, and service availability.
+**Current configuration and limitations:**
 
-It has also become a sandbox for future technical SEO and web experiments under Rob Holdings.
+- The LG C1 is usually powered off during remote access.
+- No virtual display driver is currently installed.
+- HDRTray is not installed.
+- HDRCmd.exe is used for remote HDR switching through SSH.
+- Windows HDR can cause Chrome Remote Desktop to display a gray screen.
+- Headless streaming can fail when no physical display is detected.
+- VPN routing and display configuration can affect remote connectivity.
 
-## Next
+## Current Projects
 
-- External Jellyfin access
-- `media.robholdings.com`
-- `status.robholdings.com` with live service monitoring
-- `lab.robholdings.com` for technical/SEO experiments
-- Expanded server storage
-- Private file sharing
-- Better automatic startup and recovery
+- **Virtual display:** Install and configure a virtual display driver for reliable headless Sunshine streaming.
+- **Remote workstation:** Use BobbyOs remotely from a laptop with dual-monitor support.
+- **Streaming improvements:** Improve resolution, aspect ratio, and HDR switching across Moonlight clients; evaluate HDRTray.
+- **Remote administration:** Improve SSH reliability, remote recovery, and connectivity.
+- **Jellyfin external access:** Enable access through `media.robholdings.com` without requiring Tailscale.
+- **Automated media management:** Explore automated downloads and Jellyfin library organization.
+- **YouTube music analytics dashboard:** Build `music.robholdings.com` using exported YouTube play history to visualize listening trends, artists, genres, and date ranges.
+- **Virtualization & sandboxing:** Configure Hyper-V and isolated Windows environments, including the planned DaveCube sandbox. Resolve existing virtualization startup issues.
+## Documentation
+This file covers the physical server, locally running services, and remote access.
 
-## Security
-
-Public documentation intentionally excludes internal IP addresses, credentials, local file paths, tunnel identifiers, firewall details, and other unnecessary operational information.
+Domain management, DNS, websites, and email infrastructure are documented separately in infrastructure.md.
